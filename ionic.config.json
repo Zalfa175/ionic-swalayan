@@ -1,0 +1,7 @@
+{
+  "name": "NZ Swalayan",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
