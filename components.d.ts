@@ -14,6 +14,7 @@ declare module 'vue' {
     IonIcon: typeof import('@ionic/vue')['IonIcon']
     IonItem: typeof import('@ionic/vue')['IonItem']
     IonLabel: typeof import('@ionic/vue')['IonLabel']
+    IonList: typeof import('@ionic/vue')['IonList']
     IonPage: typeof import('@ionic/vue')['IonPage']
     IonRippleEffect: typeof import('@ionic/vue')['IonRippleEffect']
     IonRouterOutlet: typeof import('@ionic/vue')['IonRouterOutlet']
