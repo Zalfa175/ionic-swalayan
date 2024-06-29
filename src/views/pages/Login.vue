@@ -18,11 +18,11 @@
                     <ion-card-title class="text-center">Login</ion-card-title>
                 </ion-card-header>
                 <ion-card-content>
-                    <ion-input label="email" label-placement="floating" placeholder="Masukkan Emailmu"></ion-input>
-                    <ion-input label="password" label-placement="floating" placeholder="Masukkan Passwordnya"></ion-input>
+                    <ion-input v-model="email" label="email" label-placement="floating" placeholder="Masukkan Emailmu"></ion-input>
+                    <ion-input v-model="password" label="password" label-placement="floating" placeholder="Masukkan Passwordnya"></ion-input>
 
                     <div class="text-center">
-                        <ion-button size="default">Masuk</ion-button>
+                        <ion-button @click="login" size="default">Masuk</ion-button>
                     </div>
                 </ion-card-content>
             </ion-card>
@@ -32,5 +32,35 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+import { axios } from "../../services/axios";
+import { token, user, TUser } from "../../services/user";
+import { useRouter } from "vue-router";
 
+const email = ref('zalfaanandita@gmail.com')
+const password = ref('175')
+const router = useRouter()
+
+const login = () => {
+
+    axios.post('login', {
+        email: email.value,
+        password: password.value,
+    }).then(result => {
+        const data = result.data?.value
+        const mess = result.data.mess
+        const isError = result.data.isError
+
+        if(isError) {
+            return
+        }
+
+        user.value = result.data?.value
+        token.value = result.data?.token
+
+        router.replace('tabs/tab1')
+    }).catch(error => {
+        console.log(error)
+    })
+}
 </script>
